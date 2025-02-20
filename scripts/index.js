@@ -3,6 +3,7 @@ const billEl = document.querySelector('.js-bill-input');
 const tipEl = document.querySelector('.js-custom-tip');
 const peopleEl = document.querySelector('.js-people-input');
 const tipButtonsContainer = document.querySelector('.js-tip-buttons');
+const tipButtons = document.querySelectorAll('.js-tip-button');
 const tipAmountByPersonEl = document.querySelector('.js-tip-amount-by-person');
 const totalAmountByPersonEl = document.querySelector(
   '.js-total-amount-by-person'
@@ -18,6 +19,7 @@ resetButton.addEventListener('click', resetForm);
 function handleFormInput() {
   if (tipEl.value !== '') {
     selectedTip = null;
+    removeActiveClass();
   }
   updateUI();
 }
@@ -34,9 +36,17 @@ function handleTipButtonClick(event) {
   const button = event.target.closest('.js-tip-button');
   if (!button) return;
 
+  removeActiveClass();
+
+  button.classList.add('active');
+
   selectedTip = parseFloat(button.dataset.tip);
   tipEl.value = '';
   updateUI();
+}
+
+function removeActiveClass() {
+  tipButtons.forEach((button) => button.classList.remove('active'));
 }
 
 function calculate() {
@@ -55,6 +65,7 @@ function resetForm() {
   tipEl.value = '';
   peopleEl.value = '1';
   selectedTip = null;
+  removeActiveClass();
   updateUI();
 }
 

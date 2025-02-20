@@ -107,6 +107,10 @@ body {
   background-color: #26c0ab;
 }
 
+.active {
+  background-color: #26c0ab;
+}
+
 .custom-tip {
   width: 93px;
   padding: 13px 8px;
